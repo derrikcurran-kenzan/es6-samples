@@ -2,6 +2,8 @@
 
 Code samples and kata results to demonstrate ES6 proficiency.
 
+A [live demo](https://derrikcurran-kenzan.github.io/es6-samples) is available.
+
 ## Notes For Tech Radar Reviewer
 
 I used the ES6 rubric on Tech Radar as of 04-18-2018.
