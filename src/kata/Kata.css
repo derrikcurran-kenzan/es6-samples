@@ -1,0 +1,16 @@
+.Kata {
+  display: flex;
+  flex-direction: row;
+}
+
+.Kata--tests, .Kata--results {
+  overflow: auto;
+}
+
+.Kata--tests {
+  flex: 1;
+}
+
+.Kata--tests > pre {
+  margin: 0;
+}
