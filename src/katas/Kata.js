@@ -20,25 +20,19 @@ class Kata extends Component {
     resultsImageFilename: 'results.png',
   };
 
-  getSourcePaths(props = this.props) {
+  getSourcePaths() {
     const {
       testSourceFilename,
       resultsImageFilename,
-    } = props;
+    } = this.props;
 
-    const modulePath = '/' + urlJoin(kataPaths.root, props.path || props.match.params.kataPath);
+    const modulePath = '/' + urlJoin(kataPaths.root, this.props.path || this.props.match.params.kataPath);
 
     return {
       module: modulePath,
       tests: urlJoin(modulePath, testSourceFilename),
       results: urlJoin(modulePath, resultsImageFilename),
     };
-  }
-
-  async loadTestSource() {
-    this.setState({
-      testSource: await (await fetch(this.getSourcePaths().tests)).text(),
-    });
   }
 
   render() {
