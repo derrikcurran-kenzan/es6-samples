@@ -1,0 +1,2 @@
+.App{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row}.App--content,.App--nav{padding:15px}.App--nav{-ms-flex:0 0 auto;flex:0 0 auto}.App--nav ul{margin:0;padding:0;list-style:none}.App--nav .NavItem>a{color:#07c}.App--nav .NavItem>a:hover{color:#3af}.App--nav .NavItem.active:before{content:"\25B6";position:absolute;font-size:.75em;line-height:1.75em;margin-left:-1em}.App--content{-ms-flex:1 1;flex:1 1}
+/*# sourceMappingURL=main.e730dc9d.css.map*/
