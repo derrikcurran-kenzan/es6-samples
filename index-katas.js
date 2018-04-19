@@ -26,7 +26,7 @@ const getDirectoriesDeep = async source => {
 
 (async () => {
   const localRoot = 'public/katas';
-  const publicRoot = localRoot.slice(6);
+  const publicRoot = localRoot.slice(7);
   const modules = (await getDirectoriesDeep(localRoot)).map(path.relative.bind(null, localRoot));
   await writeFile('src/katas/paths.json', JSON.stringify({ root: publicRoot, modules }));
 })();
