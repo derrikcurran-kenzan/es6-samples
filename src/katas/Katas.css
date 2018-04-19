@@ -30,7 +30,8 @@
   content: '▶';
   position: absolute;
   font-size: 0.75em;
-  margin: 0.25em 0 0 -1em;
+  line-height: 1.75em;
+  margin-left: -1em;
 }
 
 .Katas--view {
