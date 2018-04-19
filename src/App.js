@@ -4,6 +4,7 @@ import urlJoin from 'url-join';
 
 import { NavItem } from './common';
 import { Kata, kataPaths } from './katas';
+import { CodeSample, codeSamplePaths } from './code-samples';
 
 import './App.css';
 
@@ -23,13 +24,25 @@ class App extends Component {
 
             <h2>Code Samples</h2>
             <ul>
-              <li>Coming soon.</li>
+              {codeSamplePaths.samples.map((samplePath, idx) => {
+                const {
+                  '1': ext,
+                  index: extIndex,
+                } = samplePath.match(/\.([0-9a-z]+)$/i) || {};
+                const safeSamplePath = ext ?
+                  urlJoin(samplePath.slice(0, extIndex), `?ext=${ext}`) :
+                  samplePath;
+                return (
+                  <NavItem key={idx} to={urlJoin('/', codeSamplePaths.root, safeSamplePath)}>{samplePath}</NavItem>
+                );
+              })}
             </ul>
           </nav>
 
           <div className={`${cnRoot}--content`}>
             <Switch>
               <Route path={urlJoin('/', kataPaths.root, ':kataPath+')} component={Kata} />
+              <Route path={urlJoin('/', codeSamplePaths.root, ':codeSamplePath+')} component={CodeSample} />
             </Switch>
           </div>
         </div>

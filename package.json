@@ -8,9 +8,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "index-katas": "node index-katas.js",
-    "start": "npm run index-katas && react-scripts start",
-    "build": "npm run index-katas && react-scripts build",
+    "index-source-files": "node index-katas.js && node index-code-samples.js",
+    "start": "npm run index-source-files && react-scripts start",
+    "build": "npm run index-source-files && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
