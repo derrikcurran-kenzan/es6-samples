@@ -23,7 +23,21 @@ class Kata extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    return this.loadTestSource();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      path,
+      testSourceFilename,
+    } = this.props;
+    if (path !== prevProps.path || testSourceFilename !== prevProps.testSourceFilename) {
+      return this.loadTestSource();
+    }
+  }
+
+  async loadTestSource() {
     this.setState({
       testSource: await (await fetch(this.getSourcePaths().tests)).text(),
     });
