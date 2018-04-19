@@ -1,1 +1,1 @@
-{"root":"katas","modules":["promise/basics"]}
+{"root":"katas","modules":["array/entries","arrow-functions/basics","block-scope/let","class/accessors","default-parameters/basics","destructuring/assign","generator/creation","iterator/protocol","map/basics","modules/import-statement","number/isInteger","object/is","object-literal/basics","promise/basics","reflect/basics","rest-operator/as-parameter","set/basics","spread-operator/with-strings","string/repeat","symbol/basics","template-strings/basics","unicode/in-strings"]}
