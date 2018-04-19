@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import urlJoin from 'url-join';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/styles/hljs';
-
-import './Kata.css';
+import { darcula } from 'react-syntax-highlighter/styles/hljs';
 
 class Kata extends Component {
   static propTypes = {
@@ -48,11 +46,11 @@ class Kata extends Component {
     const cnRoot = 'Kata';
     return (
       <div className={cnRoot}>
-        <div className={`${cnRoot}--tests`}>
-          <SyntaxHighlighter language='javascript' style={docco}>{this.state.testSource}</SyntaxHighlighter>
-        </div>
         <div className={`${cnRoot}--results`}>
-          <img src={this.getSourcePaths().results} />
+          <img src={this.getSourcePaths().results} alt='Kata Results'/>
+        </div>
+        <div className={`${cnRoot}--tests`}>
+          <SyntaxHighlighter language='javascript' style={darcula}>{this.state.testSource}</SyntaxHighlighter>
         </div>
       </div>
     );
