@@ -1,0 +1,38 @@
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+.App--nav, .App--content {
+  padding: 15px;
+}
+
+.App--nav {
+  flex: 0 0 auto;
+}
+
+.App--nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.App--nav .NavItem > a {
+  color: #07c;
+}
+
+.App--nav .NavItem > a:hover {
+  color: #3af;
+}
+
+.App--nav .NavItem.active:before {
+  content: '▶';
+  position: absolute;
+  font-size: 0.75em;
+  line-height: 1.75em;
+  margin-left: -1em;
+}
+
+.App--content {
+  flex: 1;
+}

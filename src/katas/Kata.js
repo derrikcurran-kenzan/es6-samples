@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import urlJoin from 'url-join';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/styles/hljs';
+
+import { CodeBlock } from '../common';
+
+import kataPaths from './kataPaths.json';
 
 class Kata extends Component {
   static propTypes = {
-    path: PropTypes.string.isRequired, // Relative to public root.
+    // Path relative to public katas root (e.g. /katas). If not provided, props.match.params.kataPath will be used.
+    path: PropTypes.string,
+
     testSourceFilename: PropTypes.string, // File containing source code for successful tests.
     resultsImageFilename: PropTypes.string, // Screenshot of results.
   };
@@ -16,25 +20,19 @@ class Kata extends Component {
     resultsImageFilename: 'results.png',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      testSource: '',
-    };
-  }
-
-  componentDidMount() {
-    return this.loadTestSource();
-  }
-
-  componentDidUpdate(prevProps) {
+  getSourcePaths(props = this.props) {
     const {
-      path,
       testSourceFilename,
-    } = this.props;
-    if (path !== prevProps.path || testSourceFilename !== prevProps.testSourceFilename) {
-      return this.loadTestSource();
-    }
+      resultsImageFilename,
+    } = props;
+
+    const modulePath = '/' + urlJoin(kataPaths.root, props.path || props.match.params.kataPath);
+
+    return {
+      module: modulePath,
+      tests: urlJoin(modulePath, testSourceFilename),
+      results: urlJoin(modulePath, resultsImageFilename),
+    };
   }
 
   async loadTestSource() {
@@ -43,28 +41,17 @@ class Kata extends Component {
     });
   }
 
-  getSourcePaths() {
-    const {
-      path,
-      testSourceFilename,
-      resultsImageFilename,
-    } = this.props;
-
-    return {
-      tests: urlJoin(path, testSourceFilename),
-      results: urlJoin(path, resultsImageFilename),
-    };
-  }
-
   render() {
     const cnRoot = 'Kata';
+    const sourcePaths = this.getSourcePaths();
     return (
       <div className={cnRoot}>
+        <h3>{sourcePaths.module}</h3>
         <div className={`${cnRoot}--results`}>
-          <img src={this.getSourcePaths().results} alt='Kata Results'/>
+          <img src={sourcePaths.results} alt='Kata Results'/>
         </div>
         <div className={`${cnRoot}--tests`}>
-          <SyntaxHighlighter language='javascript' style={darcula}>{this.state.testSource}</SyntaxHighlighter>
+          <CodeBlock sourceUri={sourcePaths.tests} />
         </div>
       </div>
     );
